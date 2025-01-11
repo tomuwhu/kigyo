@@ -6,6 +6,14 @@ const kígyó = {
     pozmod() {
       this.x += this.vx
       this.y += this.vy
+      this.hossz++
+      this.q.put({x: this.x, y: this.y})
+      if (this.q.size > this.hossz) {
+        this.hossz--
+        console.log(this.q.get())
+        
+        //[this.fx, this.fy] = this.q.get()
+      }
     },
     control(key) {
         switch (key) {
@@ -31,9 +39,13 @@ const kígyó = {
     },
     hossz: 10,
     q: new Queue(),
-    x: 50,
+    x: 50,  //a feje
     y: 50,
-    vx: 1,
+
+    fx: 50, //a farka
+    fy: 50,
+
+    vx: 1,  // sebesség vektor
     vy: 0
 }
 export default kígyó

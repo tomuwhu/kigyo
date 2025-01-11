@@ -15,6 +15,7 @@
       kígyó.pozmod()
       if (pálya[kígyó.y][kígyó.x] === 0) {
         pálya[kígyó.y][kígyó.x] = 1
+        pálya[kígyó.fy][kígyó.fx] = 0
       } else {
         vége = true
       }
