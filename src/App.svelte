@@ -9,28 +9,7 @@
       }
     })
   })
-  window.onkeydown = (e) => {
-    switch (e.key) {
-      case "ArrowLeft":
-        kígyó.vx = -1
-        kígyó.vy = 0
-       ;break
-      case "ArrowRight":
-        kígyó.vx = 1
-        kígyó.vy = 0
-        break
-      case "ArrowDown":
-        kígyó.vx = 0
-        kígyó.vy = 1
-        break
-      case "ArrowUp":
-        kígyó.vx = 0
-        kígyó.vy = -1
-        break
-      default:
-        break
-    }
-  }
+  window.onkeydown = e => kígyó.control(e.key)
   setInterval(() => {
     if (!vége) {
       kígyó.pozmod()
