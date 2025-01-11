@@ -1,9 +1,12 @@
 <script>
-
+  var time = 0
+  setInterval(() => {
+    time++
+  }, 500)
 </script>
 
 <main>
-  Cica
+  Cica {time}
 </main>
 
 <style>
