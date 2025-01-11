@@ -50,7 +50,4 @@ class Kígyó {
         this.controlkeys = p.control
     }
 }
-const kígyó2 = new Kígyó({x: 90, y: 50, vx: -1, control: ["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp"]})
-const kígyó1 = new Kígyó({x: 10, y: 50, vx: 1, control: ["a", "d", "s", "w"]})
-
-export default {kígyó1, kígyó2}
+export default Kígyó

@@ -1,6 +1,9 @@
 <script>
   import { onMount } from 'svelte';
-  import kígyók from './kígyó.js'
+  import Kígyó from './kígyó.js'
+  const kígyó2 = new Kígyó({x: 90, y: 50, vx: -1, control: ["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp"]})
+  const kígyó1 = new Kígyó({x: 10, y: 50, vx: 1, control: ["a", "d", "s", "w"]})
+  let kígyók = {k1: kígyó1, k2: kígyó2}
   var vége = false
   var pálya = Array.from({length: 100}, () => Array.from({length: 100}, () => 0))
   pálya.forEach((row, i) => {
