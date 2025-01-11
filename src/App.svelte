@@ -9,10 +9,7 @@
   var vége = 0
   const pálya = Array.from({length: 100}, (_, i) => Array.from({length: 100}, (_, j) => 
     i === 0 || j === 0 || i === 99 || j === 99 ? 4 : 0))
-  onMount(() =>  
-      window.onkeydown = e => 
-        kígyók.forEach(kígyó => kígyó.control(e.key))
-  )
+  onMount(() => window.onkeydown = e => kígyók.forEach(kígyó => kígyó.control(e.key)))
   setInterval(() => {
     if (!vége) {
       kígyók.forEach((kígyó, kssz) => {
@@ -42,7 +39,6 @@
 </script>
 
 <main>
-  {vége}
   <div class="cont">
     {#each pálya as row}
       <div class="row">
@@ -63,19 +59,20 @@
     grid-template-columns: repeat(100, 1fr);
   }
   div.cell {
+    background-color: black;
     width: 5px;
     height: 5px;
   }
   div.c1 {
-    background-color: blue;
+    background-color: rgb(109, 109, 224);
   }
   div.c2 {
-    background-color: green;
+    background-color: rgb(60, 162, 60);
   }
   div.c3 {
     background-color: red;
   }
   div.c4 {
-    background-color: black;
+    background-color: rgb(64, 110, 113);
   }
 </style>
