@@ -1,9 +1,10 @@
 <script>
   import { onMount } from 'svelte';
   import Kígyó from './kígyó.js'
-  const kígyó2 = new Kígyó({x: 90, y: 50, vx: -1, control: ["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp"]})
-  const kígyó1 = new Kígyó({x: 10, y: 50, vx: 1, control: ["a", "d", "s", "w"]})
-  let kígyók = {k1: kígyó1, k2: kígyó2}
+  let kígyók = [
+    new Kígyó({x: 90, y: 50, vx: -1, control: ["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp"]}),
+    new Kígyó({x: 10, y: 50, vx: 1, control: ["a", "d", "s", "w"]})
+  ]
   var vége = false
   var pálya = Array.from({length: 100}, () => Array.from({length: 100}, () => 0))
   pálya.forEach((row, i) => {
@@ -15,12 +16,12 @@
   })
   onMount(() =>  
       window.onkeydown = e => {
-        Object.values(kígyók).forEach(kígyó => kígyó.control(e.key)) 
+        kígyók.forEach(kígyó => kígyó.control(e.key)) 
       }
   )
   setInterval(() => {
     if (!vége) {
-      Object.values(kígyók).forEach((kígyó, kssz) => {
+      kígyók.forEach((kígyó, kssz) => {
         kígyó.pozmod()
         if (pálya[kígyó.y][kígyó.x] === 3) {
           pálya[kígyó.y][kígyó.x] = 0
