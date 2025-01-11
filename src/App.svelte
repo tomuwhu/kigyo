@@ -13,6 +13,10 @@
   setInterval(() => {
     if (!vége) {
       kígyó.pozmod()
+      if (pálya[kígyó.y][kígyó.x] === 3) {
+        pálya[kígyó.y][kígyó.x] = 0
+        kígyó.hossz += 10
+      }
       if (pálya[kígyó.y][kígyó.x] === 0) {
         pálya[kígyó.y][kígyó.x] = 1
         pálya[kígyó.fy][kígyó.fx] = 0
@@ -21,6 +25,9 @@
       }
     }
   }, 50)
+  setInterval(() => {
+    pálya[Math.floor(Math.random() * 100)][Math.floor(Math.random() * 100)] = 3
+  }, 10000)
 </script>
 
 <main>
@@ -48,9 +55,12 @@
     height: 5px;
   }
   div.c1 {
-    background-color: red;
+    background-color: blue;
   }
   div.c2 {
     background-color: green;
+  }
+  div.c3 {
+    background-color: red;
   }
 </style>
