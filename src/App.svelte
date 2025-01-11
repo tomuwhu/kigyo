@@ -1,20 +1,5 @@
 <script>
-  import { Queue } from "spque"
-  var kígyó = {
-    ahossz() {
-      return this.q.size
-    },
-    pozmod() {
-      this.x += this.vx
-      this.y += this.vy
-    },
-    hossz: 10,
-    q: new Queue(),
-    x: 50,
-    y: 50,
-    vx: 1,
-    vy: 0
-  }
+  import kígyó from './kígyó.js'
   var vége = false
   var pálya = Array.from({length: 100}, () => Array.from({length: 100}, () => 0))
   pálya.forEach((row, i) => {
