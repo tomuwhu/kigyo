@@ -26,8 +26,9 @@
     }
   }, 50)
   setInterval(() => {
+    if (vége) return
     pálya[Math.floor(Math.random() * 100)][Math.floor(Math.random() * 100)] = 3
-  }, 10000)
+  }, 3000)
 </script>
 
 <main>
