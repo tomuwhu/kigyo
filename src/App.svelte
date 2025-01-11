@@ -22,11 +22,16 @@
   setInterval(() => {
     if (!vége) {
       kígyók.forEach((kígyó, kssz) => {
-        kígyó.pozmod()
-        if (pálya[kígyó.y][kígyó.x] === 3) {
-          pálya[kígyó.y][kígyó.x] = 0
-          kígyó.hossz += 10
-        }
+        kígyó.pozmod(),
+        [-1, 0, 1].forEach(i => {
+          [-1, 0, 1].forEach(j => {
+            if (pálya[kígyó.y + i][kígyó.x + j] === 3) {
+            pálya[kígyó.y + i][kígyó.x + j] = 0
+            kígyó.hossz += 10
+            }
+          })
+        })
+        
         if (pálya[kígyó.y][kígyó.x] === 0) {
           pálya[kígyó.y][kígyó.x] = kssz + 1
           pálya[kígyó.fy][kígyó.fx] = 0

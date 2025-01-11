@@ -17,18 +17,22 @@ class Kígyó {
     control(key) {
         switch (key) {
             case this.controlkeys[0]:
+                if (this.vx) return
                 this.vx = -1
                 this.vy = 0
                 break
             case this.controlkeys[1]:
+                if (this.vx) return
                 this.vx = 1
                 this.vy = 0
                 break
             case this.controlkeys[2]:
+                if (this.vy) return
                 this.vx = 0
                 this.vy = 1
                 break
             case this.controlkeys[3]:
+                if (this.vy) return
                 this.vx = 0
                 this.vy = -1
                 break
