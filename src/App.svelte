@@ -1,7 +1,14 @@
 <script>
   var time = 0
   var pálya = Array.from({length: 100}, () => Array.from({length: 100}, () => 0))
-  pálya[0][0] = 1
+  pálya.forEach((row, i) => {
+    row.forEach((cell, j) => {
+      if (i === 0 || j === 0 || i === 99 || j === 99) {
+        pálya[i][j] = 2
+      }
+    })
+  })
+  pálya[50][50] = 1
   setInterval(() => {
     time++
   }, 500)
@@ -21,19 +28,21 @@
 </main>
 
 <style>
- div.cont {
-   display: grid;
- }
- div.row {
-   display: grid;
-   grid-template-columns: repeat(100, 1fr);
- }
- div.cell {
-   border: 1px solid black;
-   width: 10px;
-   height: 10px;
- }
- div.c1 {
-   background-color: red;
-}
+  div.cont {
+    display: grid;
+  }
+  div.row {
+    display: grid;
+    grid-template-columns: repeat(100, 1fr);
+  }
+  div.cell {
+    width: 5px;
+    height: 5px;
+  }
+  div.c1 {
+    background-color: red;
+  }
+  div.c2 {
+    background-color: green;
+  }
 </style>
