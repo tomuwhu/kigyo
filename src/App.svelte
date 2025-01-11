@@ -1,4 +1,5 @@
 <script>
+// @ts-nocheck
   import { onMount } from 'svelte';
   import Kígyó from './kígyó.js'
   const kígyók = [
@@ -6,18 +7,11 @@
     new Kígyó({x: 10, y: 51, vx: 1, control: ["a", "d", "s", "w"]})
   ]
   var vége = 0
-  const pálya = Array.from({length: 100}, () => Array.from({length: 100}, () => 0))
-  pálya.forEach((row, i) => {
-    row.forEach((cell, j) => {
-      if (i === 0 || j === 0 || i === 99 || j === 99) {
-        pálya[i][j] = 4
-      }
-    })
-  })
+  const pálya = Array.from({length: 100}, (_, i) => Array.from({length: 100}, (_, j) => 
+    i === 0 || j === 0 || i === 99 || j === 99 ? 4 : 0))
   onMount(() =>  
-      window.onkeydown = e => {
-        kígyók.forEach(kígyó => kígyó.control(e.key)) 
-      }
+      window.onkeydown = e => 
+        kígyók.forEach(kígyó => kígyó.control(e.key))
   )
   setInterval(() => {
     if (!vége) {
@@ -31,7 +25,6 @@
             }
           })
         })
-        
         if (pálya[kígyó.y][kígyó.x] === 0) {
           pálya[kígyó.y][kígyó.x] = kssz + 1
           pálya[kígyó.fy][kígyó.fx] = 0
