@@ -1,5 +1,11 @@
 <script>
-  var time = 0
+  var kígyó = {
+    x: 50,
+    y: 50,
+    vx: 1,
+    vy: 0
+  }
+  var vége = false
   var pálya = Array.from({length: 100}, () => Array.from({length: 100}, () => 0))
   pálya.forEach((row, i) => {
     row.forEach((cell, j) => {
@@ -8,14 +14,38 @@
       }
     })
   })
-  pálya[50][50] = 1
+  window.onkeydown = (e) => {
+    switch (e.key) {
+      case "ArrowLeft":
+        kígyó.vx = -1
+        kígyó.vy = 0
+       ;break
+      case "ArrowRight":
+        kígyó.vx = 1
+        kígyó.vy = 0
+        break
+      case "ArrowDown":
+        kígyó.vx = 0
+        kígyó.vy = 1
+        break
+      case "ArrowUp":
+        kígyó.vx = 0
+        kígyó.vy = -1
+        break
+      default:
+        break
+    }
+  }
   setInterval(() => {
-    time++
+    if (!vége) {
+      kígyó.x += kígyó.vx
+      kígyó.y += kígyó.vy
+      pálya[kígyó.y][kígyó.x] = 1
+    }
   }, 500)
 </script>
 
 <main>
-  Cica {time}
   <div class="cont">
     {#each pálya as row}
       <div class="row">
