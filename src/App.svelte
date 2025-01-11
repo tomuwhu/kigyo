@@ -40,7 +40,11 @@
     if (!vége) {
       kígyó.x += kígyó.vx
       kígyó.y += kígyó.vy
-      pálya[kígyó.y][kígyó.x] = 1
+      if (pálya[kígyó.y][kígyó.x] === 0) {
+        pálya[kígyó.y][kígyó.x] = 1
+      } else {
+        vége = true
+      }
     }
   }, 500)
 </script>
