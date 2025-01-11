@@ -1,5 +1,15 @@
 <script>
+  import { Queue } from "spque"
   var kígyó = {
+    ahossz() {
+      return this.q.size
+    },
+    pozmod() {
+      this.x += this.vx
+      this.y += this.vy
+    },
+    hossz: 10,
+    q: new Queue(),
     x: 50,
     y: 50,
     vx: 1,
@@ -38,15 +48,14 @@
   }
   setInterval(() => {
     if (!vége) {
-      kígyó.x += kígyó.vx
-      kígyó.y += kígyó.vy
+      kígyó.pozmod()
       if (pálya[kígyó.y][kígyó.x] === 0) {
         pálya[kígyó.y][kígyó.x] = 1
       } else {
         vége = true
       }
     }
-  }, 500)
+  }, 50)
 </script>
 
 <main>
