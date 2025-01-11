@@ -6,7 +6,7 @@
   pálya.forEach((row, i) => {
     row.forEach((cell, j) => {
       if (i === 0 || j === 0 || i === 99 || j === 99) {
-        pálya[i][j] = 2
+        pálya[i][j] = 4
       }
     })
   })
@@ -17,14 +17,14 @@
   )
   setInterval(() => {
     if (!vége) {
-      Object.values(kígyók).forEach(kígyó => {
+      Object.values(kígyók).forEach((kígyó, kssz) => {
         kígyó.pozmod()
         if (pálya[kígyó.y][kígyó.x] === 3) {
           pálya[kígyó.y][kígyó.x] = 0
           kígyó.hossz += 10
         }
         if (pálya[kígyó.y][kígyó.x] === 0) {
-          pálya[kígyó.y][kígyó.x] = 1
+          pálya[kígyó.y][kígyó.x] = kssz + 1
           pálya[kígyó.fy][kígyó.fx] = 0
         } else {
           vége = true
@@ -70,5 +70,8 @@
   }
   div.c3 {
     background-color: red;
+  }
+  div.c4 {
+    background-color: black;
   }
 </style>
