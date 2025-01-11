@@ -1,12 +1,12 @@
 <script>
   import { onMount } from 'svelte';
   import Kígyó from './kígyó.js'
-  let kígyók = [
+  const kígyók = [
     new Kígyó({x: 90, y: 50, vx: -1, control: ["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp"]}),
-    new Kígyó({x: 10, y: 50, vx: 1, control: ["a", "d", "s", "w"]})
+    new Kígyó({x: 10, y: 51, vx: 1, control: ["a", "d", "s", "w"]})
   ]
-  var vége = false
-  var pálya = Array.from({length: 100}, () => Array.from({length: 100}, () => 0))
+  var vége = 0
+  const pálya = Array.from({length: 100}, () => Array.from({length: 100}, () => 0))
   pálya.forEach((row, i) => {
     row.forEach((cell, j) => {
       if (i === 0 || j === 0 || i === 99 || j === 99) {
@@ -31,7 +31,8 @@
           pálya[kígyó.y][kígyó.x] = kssz + 1
           pálya[kígyó.fy][kígyó.fx] = 0
         } else {
-          vége = true
+          if (vége) vége = 12
+          else vége = kssz + 1
         }
       })
     }
@@ -43,6 +44,7 @@
 </script>
 
 <main>
+  {vége}
   <div class="cont">
     {#each pálya as row}
       <div class="row">
