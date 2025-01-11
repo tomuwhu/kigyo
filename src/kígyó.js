@@ -6,13 +6,11 @@ const kígyó = {
     pozmod() {
       this.x += this.vx
       this.y += this.vy
-      this.hossz++
       this.q.put({x: this.x, y: this.y})
       if (this.q.size > this.hossz) {
-        this.hossz--
-        console.log(this.q.get())
-        
-        //[this.fx, this.fy] = this.q.get()
+        let fp = this.q.get()
+        this.fx = fp.x
+        this.fy = fp.y
       }
     },
     control(key) {
