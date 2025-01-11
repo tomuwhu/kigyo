@@ -1,5 +1,6 @@
 <script>
-  import kígyó from './kígyó.js'
+  import { onMount } from 'svelte';
+  import kígyók from './kígyó.js'
   var vége = false
   var pálya = Array.from({length: 100}, () => Array.from({length: 100}, () => 0))
   pálya.forEach((row, i) => {
@@ -9,25 +10,31 @@
       }
     })
   })
-  window.onkeydown = e => kígyó.control(e.key)
+  onMount(() =>  
+      window.onkeydown = e => {
+        Object.values(kígyók).forEach(kígyó => kígyó.control(e.key)) 
+      }
+  )
   setInterval(() => {
     if (!vége) {
-      kígyó.pozmod()
-      if (pálya[kígyó.y][kígyó.x] === 3) {
-        pálya[kígyó.y][kígyó.x] = 0
-        kígyó.hossz += 10
-      }
-      if (pálya[kígyó.y][kígyó.x] === 0) {
-        pálya[kígyó.y][kígyó.x] = 1
-        pálya[kígyó.fy][kígyó.fx] = 0
-      } else {
-        vége = true
-      }
+      Object.values(kígyók).forEach(kígyó => {
+        kígyó.pozmod()
+        if (pálya[kígyó.y][kígyó.x] === 3) {
+          pálya[kígyó.y][kígyó.x] = 0
+          kígyó.hossz += 10
+        }
+        if (pálya[kígyó.y][kígyó.x] === 0) {
+          pálya[kígyó.y][kígyó.x] = 1
+          pálya[kígyó.fy][kígyó.fx] = 0
+        } else {
+          vége = true
+        }
+      })
     }
   }, 50)
   setInterval(() => {
     if (vége) return
-    pálya[Math.floor(Math.random() * 100)][Math.floor(Math.random() * 100)] = 3
+    pálya[Math.floor( 1 + Math.random() * 98)][Math.floor(1 + Math.random() * 98)] = 3
   }, 3000)
 </script>
 

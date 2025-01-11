@@ -1,8 +1,9 @@
 import { Queue } from "spque"
-const kígyó = {
+
+class Kígyó {
     ahossz() {
       return this.q.size
-    },
+    }
     pozmod() {
       this.x += this.vx
       this.y += this.vy
@@ -12,38 +13,44 @@ const kígyó = {
         this.fx = fp.x
         this.fy = fp.y
       }
-    },
+    }
     control(key) {
         switch (key) {
-            case "ArrowLeft":
+            case this.controlkeys[0]:
                 this.vx = -1
                 this.vy = 0
                 break
-            case "ArrowRight":
+            case this.controlkeys[1]:
                 this.vx = 1
                 this.vy = 0
                 break
-            case "ArrowDown":
+            case this.controlkeys[2]:
                 this.vx = 0
                 this.vy = 1
                 break
-            case "ArrowUp":
+            case this.controlkeys[3]:
                 this.vx = 0
                 this.vy = -1
                 break
             default:
                 break
         }
-    },
-    hossz: 10,
-    q: new Queue(),
-    x: 50,  //a feje
-    y: 50,
+    }
+    constructor(p) {
+        this.hossz = 10
+        this.q = new Queue()
+        this.x = p.x  //a feje
+        this.y = p.y
+        this.fx = p.x //a farka
+        this.fy = p.y
 
-    fx: 50, //a farka
-    fy: 50,
+        this.vx = p.vx  // sebesség vektor
+        this.vy = 0
 
-    vx: 1,  // sebesség vektor
-    vy: 0
+        this.controlkeys = p.control
+    }
 }
-export default kígyó
+const kígyó2 = new Kígyó({x: 90, y: 50, vx: -1, control: ["ArrowLeft", "ArrowRight", "ArrowDown", "ArrowUp"]})
+const kígyó1 = new Kígyó({x: 10, y: 50, vx: 1, control: ["a", "d", "s", "w"]})
+
+export default {kígyó1, kígyó2}
